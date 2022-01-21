@@ -32,9 +32,13 @@ private:
 
 	const sf::Color RED{ 194, 0 , 0 , 255 }; //color for red button
 	const sf::Color BLUE{ 41, 41, 238, 255 }; //color for blue button
+	const sf::Color GREEN{ 54, 188, 54, 255 }; //color for green button
+	const sf::Color YELLOW{ 247, 247, 32, 255 }; //color for yellow button
 
 	sf::RectangleShape m_redButton; //shape for red button
 	sf::RectangleShape m_blueButton; //shape for blue button
+	sf::RectangleShape m_greenButton; //shape for green butoon
+	sf::RectangleShape m_yellowButton; //shape for yellow button
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message

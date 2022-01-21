@@ -17,8 +17,10 @@
 /// </summary>
 Game::Game() :
 	m_window{ sf::VideoMode{ 800U, 600U, 32U }, "SFML Game" },
-	m_redButton{ sf::Vector2f{ 200.0f, 200.0f } },
-	m_blueButton{ sf::Vector2f{ 200.0f, 200.0f}},
+	m_redButton{ sf::Vector2f{ 200.0f, 200.0f } }, //size of the shape
+	m_blueButton{ sf::Vector2f{ 200.0f, 200.0f} }, //size of the shape
+	m_greenButton{ sf::Vector2f{200.0f,200.0f} }, //size of the shape
+	m_yellowButton{ sf::Vector2f{200.0f,200.0f} }, //size of the shape
 	m_exitGame{false} //when true game will exit
 {
 	m_buttons();
@@ -111,16 +113,24 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::Black);
-	m_window.draw(m_redButton);
-	m_window.draw(m_blueButton);
+	m_window.draw(m_redButton); //draws red square to the board
+	m_window.draw(m_blueButton); //draws blue square to the board
+	m_window.draw(m_greenButton); //draws green square to the board
+	m_window.draw(m_yellowButton); //darws yellow square to the board
 	m_window.display();
 }
 
 void Game::m_buttons()
 {
-	m_redButton.setFillColor(RED);
-	m_redButton.setPosition(sf::Vector2f{ 570.0f, 30.0f });
+	m_redButton.setFillColor(RED); //colors the square red
+	m_redButton.setPosition(sf::Vector2f{ 570.0f, 30.0f }); // positions the square
 
-	m_blueButton.setFillColor(BLUE);
-	m_blueButton.setPosition(sf::Vector2f{ 570.0f, 250.0f });
+	m_blueButton.setFillColor(BLUE); //colors the square blue
+	m_blueButton.setPosition(sf::Vector2f{ 570.0f, 250.0f }); // positions the square
+
+	m_greenButton.setFillColor(GREEN); //colors the square green
+	m_greenButton.setPosition(sf::Vector2f{ 330.0f, 30.0f });
+
+	m_yellowButton.setFillColor(YELLOW); //colors the square yellow
+	m_yellowButton.setPosition(sf::Vector2f{ 330.0f, 250.0f });
 }
