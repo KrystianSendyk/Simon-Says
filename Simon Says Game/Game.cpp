@@ -123,14 +123,19 @@ void Game::render()
 void Game::m_buttons()
 {
 	m_redButton.setFillColor(RED); //colors the square red
-	m_redButton.setPosition(sf::Vector2f{ 570.0f, 30.0f }); // positions the square
+	m_redButton.setPosition(sf::Vector2f{ 570.0f, 30.0f }); //positions the square
 
 	m_blueButton.setFillColor(BLUE); //colors the square blue
-	m_blueButton.setPosition(sf::Vector2f{ 570.0f, 250.0f }); // positions the square
+	m_blueButton.setPosition(sf::Vector2f{ 570.0f, 250.0f }); //positions the square
 
 	m_greenButton.setFillColor(GREEN); //colors the square green
-	m_greenButton.setPosition(sf::Vector2f{ 330.0f, 30.0f });
+	m_greenButton.setPosition(sf::Vector2f{ 330.0f, 30.0f }); //positons the square
 
 	m_yellowButton.setFillColor(YELLOW); //colors the square yellow
-	m_yellowButton.setPosition(sf::Vector2f{ 330.0f, 250.0f });
+	m_yellowButton.setPosition(sf::Vector2f{ 330.0f, 250.0f }); //positions the square
+}
+
+void Game::m_word()
+{
+	m_title.setString
 }
