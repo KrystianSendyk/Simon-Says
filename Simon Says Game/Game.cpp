@@ -18,8 +18,10 @@
 Game::Game() :
 	m_window{ sf::VideoMode{ 800U, 600U, 32U }, "SFML Game" },
 	m_redButton{ sf::Vector2f{ 200.0f, 200.0f } },
+	m_blueButton{ sf::Vector2f{ 200.0f, 200.0f}},
 	m_exitGame{false} //when true game will exit
 {
+	m_buttons();
 }
 
 /// <summary>
@@ -110,11 +112,15 @@ void Game::render()
 {
 	m_window.clear(sf::Color::Black);
 	m_window.draw(m_redButton);
+	m_window.draw(m_blueButton);
 	m_window.display();
 }
 
 void Game::m_buttons()
 {
 	m_redButton.setFillColor(RED);
-	m_redButton.setPosition(570.0f, 30.0f);
+	m_redButton.setPosition(sf::Vector2f{ 570.0f, 30.0f });
+
+	m_blueButton.setFillColor(BLUE);
+	m_blueButton.setPosition(sf::Vector2f{ 570.0f, 250.0f });
 }

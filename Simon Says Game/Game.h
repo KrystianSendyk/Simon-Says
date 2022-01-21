@@ -30,9 +30,11 @@ private:
 	
 	void m_buttons();
 
-	const sf::Color RED{ 194, 0 , 0 , 0 };
+	const sf::Color RED{ 194, 0 , 0 , 255 }; //color for red button
+	const sf::Color BLUE{ 41, 41, 238, 255 }; //color for blue button
 
-	sf::RectangleShape m_redButton;
+	sf::RectangleShape m_redButton; //shape for red button
+	sf::RectangleShape m_blueButton; //shape for blue button
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
