@@ -24,6 +24,7 @@ Game::Game() :
 	m_exitGame{false} //when true game will exit
 {
 	m_buttons();
+	m_titleWord();
 }
 
 /// <summary>
@@ -117,6 +118,7 @@ void Game::render()
 	m_window.draw(m_blueButton); //draws blue square to the board
 	m_window.draw(m_greenButton); //draws green square to the board
 	m_window.draw(m_yellowButton); //darws yellow square to the board
+	m_window.draw(m_title); //draws the title of the game
 	m_window.display();
 }
 
@@ -135,7 +137,16 @@ void Game::m_buttons()
 	m_yellowButton.setPosition(sf::Vector2f{ 330.0f, 250.0f }); //positions the square
 }
 
-void Game::m_word()
+void Game::m_titleWord()
 {
-	m_title.setString
+	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
+	{
+		std::cout << "Problem loading the font" << std::endl;
+	}
+
+	m_title.setFont(m_ArialBlackfont);
+	m_title.setString("Simon Says");
+	m_title.setPosition(sf::Vector2f{ 10.0f, 30.0f });
+	m_title.setFillColor(sf::Color::White);
+	m_title.setCharacterSize(50U);
 }

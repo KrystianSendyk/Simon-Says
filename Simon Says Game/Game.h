@@ -29,7 +29,7 @@ private:
 	void render();
 	
 	void m_buttons();
-	void m_word();
+	void m_titleWord();
 
 	const sf::Color RED{ 194, 0 , 0 , 255 }; //color for red button
 	const sf::Color BLUE{ 41, 41, 238, 255 }; //color for blue button
@@ -43,7 +43,7 @@ private:
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
-	sf::Font m_title;
+	sf::Text m_title;
 	
 
 	bool m_exitGame; // control exiting game
@@ -51,4 +51,3 @@ private:
 };
 
 #endif // !GAME_HPP
-
