@@ -23,8 +23,8 @@ Game::Game() :
 	m_yellowButton{ sf::Vector2f{200.0f,200.0f} }, //size of the shape
 	m_exitGame{false} //when true game will exit
 {
-	m_buttons();
-	m_word();
+	m_buttons(); //displays the buttons to the screen
+	m_word(); //displays the text to the screen
 }
 
 /// <summary>
@@ -77,8 +77,7 @@ void Game::processEvents()
 		{
 			m_exitGame = true;
 		}
-		processMouse(newEvent);
-		
+		processMouse(newEvent); //event for mouse press
 	}
 }
 
@@ -102,27 +101,27 @@ void Game::processMouse(sf::Event &t_event)
 	if (sf::Event::MouseButtonReleased == t_event.type)
 	{
 		//checks if the player presses the squares
-		if (t_event.mouseButton.x > COL_1_lEFT && t_event.mouseButton.x < COL_1_RIGHT)
+		if (t_event.mouseButton.x > COL_1_lEFT && t_event.mouseButton.x < COL_1_RIGHT) //checks if the player pressed between first colum
 		{
-			if (t_event.mouseButton.y > ROW_1_TOP && t_event.mouseButton.y < ROW_1_BOTTOM)
+			if (t_event.mouseButton.y > ROW_1_TOP && t_event.mouseButton.y < ROW_1_BOTTOM) //checks if the player pressed between first row
 			{
 				m_greenButtonPressed = true;
 			}
 
-			if (t_event.mouseButton.y > ROW_2_TOP && t_event.mouseButton.y < ROW_2_BOTTOM)
+			if (t_event.mouseButton.y > ROW_2_TOP && t_event.mouseButton.y < ROW_2_BOTTOM) //checks if the player pressed between second row
 			{
 				m_yellowButtonPressed = true;
 			}
 		}
 
-		if (t_event.mouseButton.x > Col_2_LEFT && t_event.mouseButton.x < COL_2_RIGHT)
+		if (t_event.mouseButton.x > Col_2_LEFT && t_event.mouseButton.x < COL_2_RIGHT)//checks if the player pressed between second colum
 		{
-			if (t_event.mouseButton.y > ROW_1_TOP && t_event.mouseButton.y < ROW_1_BOTTOM)
+			if (t_event.mouseButton.y > ROW_1_TOP && t_event.mouseButton.y < ROW_1_BOTTOM) //checks if the player pressed between first row
 			{
 				m_redButtonPressed = true;
 			}
 
-			if (t_event.mouseButton.y > ROW_2_TOP && t_event.mouseButton.y < ROW_2_BOTTOM)
+			if (t_event.mouseButton.y > ROW_2_TOP && t_event.mouseButton.y < ROW_2_BOTTOM) //checks if the player pressed between second row
 			{
 				m_blueButtonPressed = true;
 			}
@@ -144,22 +143,23 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	if (m_blueButtonPressed == true) //blue button pressed exits the game
 	{
+		m_blueButton.setFillColor(sf::Color(0, 0, 250));
 		m_window.close();
 	}
 
 	if (m_redButtonPressed == true) //red button pressed, lights up
 	{
-		m_redButton.setFillColor(sf::Color(250, 0, 0)); //colors the square red
+		m_redButton.setFillColor(sf::Color(250, 0, 0)); //highlights the button pressed
 	}
 
 	if (m_yellowButtonPressed == true) //yellow button pressed, light up
 	{
-		m_yellowButton.setFillColor(sf::Color(224, 255, 50));
+		m_yellowButton.setFillColor(sf::Color(224, 255, 50)); //highlights the button pressed
 	}
 
-	if (m_greenButtonPressed == true)
+	if (m_greenButtonPressed == true) //green button pressed, light up
 	{
-		m_greenButton.setFillColor(sf::Color(0, 250, 0));
+		m_greenButton.setFillColor(sf::Color(0, 250, 0)); //highlights the button pressed
 	}
 }
 
@@ -184,7 +184,7 @@ void Game::render()
 	m_window.display();
 }
 
-void Game::m_buttons()
+void Game::m_buttons() //sets the color and position of the buttons
 {
 	m_greenButton.setFillColor(GREEN); //colors the square green
 	m_greenButton.setPosition(sf::Vector2f{ 330.0f, 30.0f }); //positons the square
@@ -199,7 +199,7 @@ void Game::m_buttons()
 	m_blueButton.setPosition(sf::Vector2f{ 570.0f, 250.0f }); //positions the square
 }
 
-void Game::m_word()
+void Game::m_word() //text for different modes and title to the screem
 {
 	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
 	{
