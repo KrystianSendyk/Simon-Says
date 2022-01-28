@@ -142,9 +142,24 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
-	if (m_blueButtonPressed == true)
+	if (m_blueButtonPressed == true) //blue button pressed exits the game
 	{
 		m_window.close();
+	}
+
+	if (m_redButtonPressed == true) //red button pressed, lights up
+	{
+		m_redButton.setFillColor(sf::Color(250, 0, 0)); //colors the square red
+	}
+
+	if (m_yellowButtonPressed == true) //yellow button pressed, light up
+	{
+		m_yellowButton.setFillColor(sf::Color(224, 255, 50));
+	}
+
+	if (m_greenButtonPressed == true)
+	{
+		m_greenButton.setFillColor(sf::Color(0, 250, 0));
 	}
 }
 
