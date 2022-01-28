@@ -28,8 +28,8 @@ private:
 	void update(sf::Time t_deltaTime);
 	void render();
 	
-	void m_buttons();
-	void m_word();
+	void m_buttons(); //function for setting the color and position of the buttons
+	void m_word(); //function for text of different modes and title to the screem
 
 	const sf::Color RED{ 194, 0 , 0 , 255 }; //color for red button
 	const sf::Color BLUE{ 41, 41, 238, 255 }; //color for blue button
@@ -54,6 +54,8 @@ private:
 	bool m_blueButtonPressed = false; //check for blue button press
 	bool m_greenButtonPressed = false; //check for green button press
 	bool m_yellowButtonPressed = false; //check for yellow button press
+
+
 
 	bool m_exitGame; // control exiting game
 
