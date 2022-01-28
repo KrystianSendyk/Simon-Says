@@ -119,6 +119,7 @@ void Game::render()
 	m_window.draw(m_greenButton); //draws green square to the board
 	m_window.draw(m_yellowButton); //darws yellow square to the board
 	m_window.draw(m_title); //draws the title of the game
+	m_window.draw(m_start);
 	m_window.display();
 }
 
@@ -149,4 +150,10 @@ void Game::m_titleWord()
 	m_title.setPosition(sf::Vector2f{ 10.0f, 30.0f });
 	m_title.setFillColor(sf::Color::White);
 	m_title.setCharacterSize(50U);
+
+	m_start.setFont(m_ArialBlackfont);
+	m_start.setString("Start");
+	m_start.setPosition(sf::Vector2f{ 345.0f,90.0f });
+	m_start.setFillColor(sf::Color::White);
+	m_start.setCharacterSize(60U);
 }

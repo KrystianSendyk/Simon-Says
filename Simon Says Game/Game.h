@@ -41,9 +41,11 @@ private:
 	sf::RectangleShape m_greenButton; //shape for green butoon
 	sf::RectangleShape m_yellowButton; //shape for yellow button
 
-	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
 	sf::Text m_title;
+	sf::Text m_start;
+
+	sf::RenderWindow m_window; // main SFML window
 	
 
 	bool m_exitGame; // control exiting game
