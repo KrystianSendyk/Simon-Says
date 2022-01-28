@@ -24,7 +24,7 @@ Game::Game() :
 	m_exitGame{false} //when true game will exit
 {
 	m_buttons();
-	m_titleWord();
+	m_word();
 }
 
 /// <summary>
@@ -70,16 +70,15 @@ void Game::run()
 void Game::processEvents()
 {
 	sf::Event newEvent;
+
 	while (m_window.pollEvent(newEvent))
 	{
 		if ( sf::Event::Closed == newEvent.type) // window message
 		{
 			m_exitGame = true;
 		}
-		if (sf::Event::KeyPressed == newEvent.type) //user pressed a key
-		{
-			processKeys(newEvent);
-		}
+		processMouse(newEvent);
+		
 	}
 }
 
@@ -88,13 +87,50 @@ void Game::processEvents()
 /// deal with key presses from the user
 /// </summary>
 /// <param name="t_event">key press event</param>
-void Game::processKeys(sf::Event t_event)
+void Game::processMouse(sf::Event &t_event)
 {
-	if (sf::Keyboard::Escape == t_event.key.code)
+	const int COL_1_lEFT = 330.0F; //first colum left
+	const int COL_1_RIGHT = 530.0f; //first colum right
+	const int Col_2_LEFT = 570.0f; //second colum left
+	const int COL_2_RIGHT = 770.0f; //second colum right
+
+	const int ROW_1_TOP = 30.0f; //first row top
+	const int ROW_1_BOTTOM = 230;//first row bottom
+	const int ROW_2_TOP = 250.0f; //second row top
+	const int ROW_2_BOTTOM = 450.0f; //second row bottom
+
+	if (sf::Event::MouseButtonReleased == t_event.type)
 	{
-		m_exitGame = true;
+		//checks if the player presses the squares
+		if (t_event.mouseButton.x > COL_1_lEFT && t_event.mouseButton.x < COL_1_RIGHT)
+		{
+			if (t_event.mouseButton.y > ROW_1_TOP && t_event.mouseButton.y < ROW_1_BOTTOM)
+			{
+				m_greenButtonPressed = true;
+			}
+
+			if (t_event.mouseButton.y > ROW_2_TOP && t_event.mouseButton.y < ROW_2_BOTTOM)
+			{
+				m_yellowButtonPressed = true;
+			}
+		}
+
+		if (t_event.mouseButton.x > Col_2_LEFT && t_event.mouseButton.x < COL_2_RIGHT)
+		{
+			if (t_event.mouseButton.y > ROW_1_TOP && t_event.mouseButton.y < ROW_1_BOTTOM)
+			{
+				m_redButtonPressed = true;
+			}
+
+			if (t_event.mouseButton.y > ROW_2_TOP && t_event.mouseButton.y < ROW_2_BOTTOM)
+			{
+				m_blueButtonPressed = true;
+			}
+		}
 	}
+
 }
+
 
 /// <summary>
 /// Update the game world
@@ -103,6 +139,10 @@ void Game::processKeys(sf::Event t_event)
 void Game::update(sf::Time t_deltaTime)
 {
 	if (m_exitGame)
+	{
+		m_window.close();
+	}
+	if (m_blueButtonPressed == true)
 	{
 		m_window.close();
 	}
@@ -131,20 +171,20 @@ void Game::render()
 
 void Game::m_buttons()
 {
-	m_redButton.setFillColor(RED); //colors the square red
-	m_redButton.setPosition(sf::Vector2f{ 570.0f, 30.0f }); //positions the square
-
-	m_blueButton.setFillColor(BLUE); //colors the square blue
-	m_blueButton.setPosition(sf::Vector2f{ 570.0f, 250.0f }); //positions the square
-
 	m_greenButton.setFillColor(GREEN); //colors the square green
 	m_greenButton.setPosition(sf::Vector2f{ 330.0f, 30.0f }); //positons the square
 
 	m_yellowButton.setFillColor(YELLOW); //colors the square yellow
 	m_yellowButton.setPosition(sf::Vector2f{ 330.0f, 250.0f }); //positions the square
+
+	m_redButton.setFillColor(RED); //colors the square red
+	m_redButton.setPosition(sf::Vector2f{ 570.0f, 30.0f }); //positions the square
+
+	m_blueButton.setFillColor(BLUE); //colors the square blue
+	m_blueButton.setPosition(sf::Vector2f{ 570.0f, 250.0f }); //positions the square
 }
 
-void Game::m_titleWord()
+void Game::m_word()
 {
 	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
 	{

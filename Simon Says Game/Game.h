@@ -24,12 +24,12 @@ public:
 private:
 
 	void processEvents();
-	void processKeys(sf::Event t_event);
+	void processMouse(sf::Event &t_event); // to detect mouse clicks
 	void update(sf::Time t_deltaTime);
 	void render();
 	
 	void m_buttons();
-	void m_titleWord();
+	void m_word();
 
 	const sf::Color RED{ 194, 0 , 0 , 255 }; //color for red button
 	const sf::Color BLUE{ 41, 41, 238, 255 }; //color for blue button
@@ -50,6 +50,10 @@ private:
 
 	sf::RenderWindow m_window; // main SFML window
 	
+	bool m_redButtonPressed = false; //check for red button press
+	bool m_blueButtonPressed = false; //check for blue button press
+	bool m_greenButtonPressed = false; //check for green button press
+	bool m_yellowButtonPressed = false; //check for yellow button press
 
 	bool m_exitGame; // control exiting game
 
