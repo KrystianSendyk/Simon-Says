@@ -42,8 +42,11 @@ private:
 	sf::RectangleShape m_yellowButton; //shape for yellow button
 
 	sf::Font m_ArialBlackfont; // font used by message
-	sf::Text m_title;
-	sf::Text m_start;
+	sf::Text m_title; //text for message
+	sf::Text m_easy; //text for easy mode
+	sf::Text m_medium; //text for medium mode
+	sf::Text m_hard; //text for hard mode
+	sf::Text m_exit; //text for exit button
 
 	sf::RenderWindow m_window; // main SFML window
 	

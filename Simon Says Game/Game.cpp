@@ -114,12 +114,18 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::Black);
+
 	m_window.draw(m_redButton); //draws red square to the board
 	m_window.draw(m_blueButton); //draws blue square to the board
 	m_window.draw(m_greenButton); //draws green square to the board
 	m_window.draw(m_yellowButton); //darws yellow square to the board
+
 	m_window.draw(m_title); //draws the title of the game
-	m_window.draw(m_start);
+	m_window.draw(m_easy); //draws the start text for easy mode
+	m_window.draw(m_medium); //draws the start text for medium mode
+	m_window.draw(m_hard); //draws the start text for hard mode
+	m_window.draw(m_exit); //draw the exit text
+
 	m_window.display();
 }
 
@@ -151,9 +157,27 @@ void Game::m_titleWord()
 	m_title.setFillColor(sf::Color::White);
 	m_title.setCharacterSize(50U);
 
-	m_start.setFont(m_ArialBlackfont);
-	m_start.setString("Start");
-	m_start.setPosition(sf::Vector2f{ 345.0f,90.0f });
-	m_start.setFillColor(sf::Color::White);
-	m_start.setCharacterSize(60U);
+	m_easy.setFont(m_ArialBlackfont);
+	m_easy.setString("Easy");
+	m_easy.setPosition(sf::Vector2f{ 380.0f,110.0f });
+	m_easy.setFillColor(sf::Color::White);
+	m_easy.setCharacterSize(40U);
+
+	m_medium.setFont(m_ArialBlackfont);
+	m_medium.setString("Medium");
+	m_medium.setPosition(sf::Vector2f{ 345.0f,320.0f });
+	m_medium.setFillColor(sf::Color::White);
+	m_medium.setCharacterSize(40U);
+
+	m_hard.setFont(m_ArialBlackfont);
+	m_hard.setString("Hard");
+	m_hard.setPosition(sf::Vector2f{ 620.0f,110.0f });
+	m_hard.setFillColor(sf::Color::White);
+	m_hard.setCharacterSize(40U);
+
+	m_exit.setFont(m_ArialBlackfont);
+	m_exit.setString("Exit");
+	m_exit.setPosition(sf::Vector2f{ 630.0f,320.0f });
+	m_exit.setFillColor(sf::Color::White);
+	m_exit.setCharacterSize(40U);
 }
