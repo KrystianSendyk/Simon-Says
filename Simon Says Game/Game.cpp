@@ -21,10 +21,13 @@ Game::Game() :
 	m_blueButton{ sf::Vector2f{ 200.0f, 200.0f} }, //size of the shape
 	m_greenButton{ sf::Vector2f{200.0f,200.0f} }, //size of the shape
 	m_yellowButton{ sf::Vector2f{200.0f,200.0f} }, //size of the shape
+	m_noteSequences(), //sequence of the notes
 	m_exitGame{false} //when true game will exit
 {
 	m_buttons(); //displays the buttons to the screen
 	m_word(); //displays the text to the screen
+	gameMode(m_difficulty);
+	timerButtons();
 }
 
 /// <summary>
@@ -81,7 +84,6 @@ void Game::processEvents()
 	}
 }
 
-
 /// <summary>
 /// deal with key presses from the user
 /// </summary>
@@ -105,12 +107,14 @@ void Game::processMouse(sf::Event &t_event) //function for checking if the butto
 		{
 			if (t_event.mouseButton.y > ROW_1_TOP && t_event.mouseButton.y < ROW_1_BOTTOM) //checks if the player pressed between first row
 			{
-				m_greenButtonPressed = true;
+				m_greenButtonPressed = true; //sets the pressed button to true
+				timerButtons();
 			}
 
 			if (t_event.mouseButton.y > ROW_2_TOP && t_event.mouseButton.y < ROW_2_BOTTOM) //checks if the player pressed between second row
 			{
-				m_yellowButtonPressed = true;
+				m_yellowButtonPressed = true; //sets the pressed button to true
+				timerButtons();
 			}
 		}
 
@@ -118,12 +122,14 @@ void Game::processMouse(sf::Event &t_event) //function for checking if the butto
 		{
 			if (t_event.mouseButton.y > ROW_1_TOP && t_event.mouseButton.y < ROW_1_BOTTOM) //checks if the player pressed between first row
 			{
-				m_redButtonPressed = true;
+				m_redButtonPressed = true; //sets the pressed button to true
+				timerButtons();
 			}
 
 			if (t_event.mouseButton.y > ROW_2_TOP && t_event.mouseButton.y < ROW_2_BOTTOM) //checks if the player pressed between second row
 			{
-				m_blueButtonPressed = true;
+				m_blueButtonPressed = true; //sets the pressed button to true
+				timerButtons();
 			}
 		}
 	}
@@ -148,19 +154,28 @@ void Game::update(sf::Time t_deltaTime)
 
 	if (m_redButtonPressed == true) //red button pressed, lights up
 	{
-		m_redButtonPressed = false;
-		gameMode();
+		randomiseNotes(); //randomises the notes for easy mode
+		m_difficulty = 32; //the difficulty level
+		m_currentNote = 0; // the current note you are on
+		m_currentCount = 1; // the count of the notes
 	}
 
 	if (m_yellowButtonPressed == true) //yellow button pressed, light up
 	{
-		gameMode();
+		randomiseNotes(); //randomises the notes for easy mode
+		m_difficulty = 16; //the difficulty level
+		m_currentNote = 0; // the current note you are on
+		m_currentCount = 1; // the count of the notes
 	}
 
 	if (m_greenButtonPressed == true) //green button pressed, light up
 	{
-		gameMode();
+		randomiseNotes(); //randomises the notes for easy mode
+		m_difficulty = 8; //the difficulty level
+		m_currentNote = 0; // the current note you are on
+		m_currentCount = 1; // the count of the notes
 	}
+	timerButtons();//countdown timers
 }
 
 /// <summary>
@@ -197,6 +212,19 @@ void Game::m_buttons() //sets the color and position of the buttons
 
 	m_blueButton.setFillColor(BLUE); //colors the square blue
 	m_blueButton.setPosition(sf::Vector2f{ 570.0f, 250.0f }); //positions the square
+}
+
+void Game::randomiseNotes() //randomises the notes played
+{
+	for (int i = 0; i < 32; i++)
+	{
+		m_noteSequences[i] = std::rand() % 4;
+	}
+
+	const int GREEN_BUTTON = 0; //the notes are stored as numbers
+	const int YELLOW_BUTTON = 1;
+	const int RED_BUTTON = 2;
+	const int BLUE_BUTTON = 3;
 }
 
 void Game::m_word() //text for different modes and title to the screem
@@ -237,40 +265,18 @@ void Game::m_word() //text for different modes and title to the screem
 	m_exit.setCharacterSize(40U);
 }
 
-void Game::gameMode()
+void Game::gameMode(int m_difficulty)
 {
-	int easyGame = 8; //mode for easy game
-	int easy = 0; //count for easy game
-	int mediumHame = 16; //mode for medium game
-	int medium = 0; //count for medium game
-	int hardHame = 32; //mode for hard game
-	int hard = 0; //count for hard game
-
-	if (m_greenButtonPressed == true) // if green button pressed it begins easy game
-	{
-		for (easy = 0; easy <= easyGame; easy++)
-		{
-			timerButtons();
-		}
-	}
-
+	
 }
 
 void Game::timerButtons()
 {
-	if (m_greenButtonPressed == true)
+	if (m_greenTimer > 0)
 	{
-		m_greenButton.setFillColor(sf::Color(42, 252, 35));
-
-		if (m_greenTimer >= 0)
+		if (0 == --m_greenTimer) //when timer reaches zero it turns to the original color
 		{
-			if (0 == m_greenTimer)
-			{
-				m_greenButton.setFillColor(sf::Color::Green);
-			}
-			m_greenTimer--;
+			m_greenButton.setFillColor(sf::Color::Green);
 		}
-		
 	}
-
 }

@@ -29,9 +29,10 @@ private:
 	void render();
 	
 	void m_buttons(); //function for setting the color and position of the buttons
+	void randomiseNotes();
 	void m_word(); //function for text of different modes and title to the screem
-	void gameMode(); //function for the game modes
-	void timerButtons();
+	void gameMode(int m_difficulty); //function for the game modes
+	void timerButtons(); //countdown timers
 
 	const sf::Color RED{ 194, 0 , 0 , 255 }; //color for red button
 	const sf::Color BLUE{ 41, 41, 238, 255 }; //color for blue button
@@ -43,11 +44,18 @@ private:
 	sf::RectangleShape m_greenButton; //shape for green butoon
 	sf::RectangleShape m_yellowButton; //shape for yellow button
 
-	const int FLASH_TIME = 6;
-	int m_redTimer = FLASH_TIME;
-	int m_blueTimer = FLASH_TIME;
-	int m_greenTimer = FLASH_TIME;
-	int m_yelloweTimer = FLASH_TIME;
+	const int FLASH_TIME = 60; //how long it stays lit up
+	int m_redTimer = FLASH_TIME; //flash time of red button
+	int m_blueTimer = FLASH_TIME; //flash time of blue button
+	int m_greenTimer = FLASH_TIME; //flash time of green button
+	int m_yelloweTimer = FLASH_TIME; //flash time of yellow button
+	int m_difficulty = 0; //sets the difficulty of the game
+
+	
+
+	int m_currentNote = 0;//the current note the player is on
+	int m_currentCount = 0; //counts the the notes
+	int m_noteSequences[32]; //hold the sequence of the notes
 
 	sf::Font m_ArialBlackfont; // font used by message
 	sf::Text m_title; //text for message
@@ -63,10 +71,7 @@ private:
 	bool m_greenButtonPressed = false; //check for green button press
 	bool m_yellowButtonPressed = false; //check for yellow button press
 
-
-
 	bool m_exitGame; // control exiting game
-
 };
 
 #endif // !GAME_HPP
