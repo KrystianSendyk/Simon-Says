@@ -86,7 +86,7 @@ void Game::processEvents()
 /// deal with key presses from the user
 /// </summary>
 /// <param name="t_event">key press event</param>
-void Game::processMouse(sf::Event &t_event)
+void Game::processMouse(sf::Event &t_event) //function for checking if the button was pressed
 {
 	const int COL_1_lEFT = 330.0F; //first colum left
 	const int COL_1_RIGHT = 530.0f; //first colum right
@@ -143,23 +143,23 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	if (m_blueButtonPressed == true) //blue button pressed exits the game
 	{
-		m_blueButton.setFillColor(sf::Color(0, 0, 250));
 		m_window.close();
 	}
 
 	if (m_redButtonPressed == true) //red button pressed, lights up
 	{
-		m_redButton.setFillColor(sf::Color(250, 0, 0)); //highlights the button pressed
+		m_redButtonPressed = false;
+		gameMode();
 	}
 
 	if (m_yellowButtonPressed == true) //yellow button pressed, light up
 	{
-		m_yellowButton.setFillColor(sf::Color(224, 255, 50)); //highlights the button pressed
+		gameMode();
 	}
 
 	if (m_greenButtonPressed == true) //green button pressed, light up
 	{
-		m_greenButton.setFillColor(sf::Color(0, 250, 0)); //highlights the button pressed
+		gameMode();
 	}
 }
 
@@ -235,4 +235,42 @@ void Game::m_word() //text for different modes and title to the screem
 	m_exit.setPosition(sf::Vector2f{ 630.0f,320.0f });
 	m_exit.setFillColor(sf::Color::White);
 	m_exit.setCharacterSize(40U);
+}
+
+void Game::gameMode()
+{
+	int easyGame = 8; //mode for easy game
+	int easy = 0; //count for easy game
+	int mediumHame = 16; //mode for medium game
+	int medium = 0; //count for medium game
+	int hardHame = 32; //mode for hard game
+	int hard = 0; //count for hard game
+
+	if (m_greenButtonPressed == true) // if green button pressed it begins easy game
+	{
+		for (easy = 0; easy <= easyGame; easy++)
+		{
+			timerButtons();
+		}
+	}
+
+}
+
+void Game::timerButtons()
+{
+	if (m_greenButtonPressed == true)
+	{
+		m_greenButton.setFillColor(sf::Color(42, 252, 35));
+
+		if (m_greenTimer >= 0)
+		{
+			if (0 == m_greenTimer)
+			{
+				m_greenButton.setFillColor(sf::Color::Green);
+			}
+			m_greenTimer--;
+		}
+		
+	}
+
 }

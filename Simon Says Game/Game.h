@@ -30,6 +30,8 @@ private:
 	
 	void m_buttons(); //function for setting the color and position of the buttons
 	void m_word(); //function for text of different modes and title to the screem
+	void gameMode(); //function for the game modes
+	void timerButtons();
 
 	const sf::Color RED{ 194, 0 , 0 , 255 }; //color for red button
 	const sf::Color BLUE{ 41, 41, 238, 255 }; //color for blue button
@@ -40,6 +42,12 @@ private:
 	sf::RectangleShape m_blueButton; //shape for blue button
 	sf::RectangleShape m_greenButton; //shape for green butoon
 	sf::RectangleShape m_yellowButton; //shape for yellow button
+
+	const int FLASH_TIME = 6;
+	int m_redTimer = FLASH_TIME;
+	int m_blueTimer = FLASH_TIME;
+	int m_greenTimer = FLASH_TIME;
+	int m_yelloweTimer = FLASH_TIME;
 
 	sf::Font m_ArialBlackfont; // font used by message
 	sf::Text m_title; //text for message
